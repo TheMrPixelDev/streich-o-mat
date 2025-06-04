@@ -1,4 +1,4 @@
-import { Container, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Container, IconButton, Stack, Typography } from "@mui/material";
 import { useGroups } from "../hooks/useGroups";
 import { GroupsAccordion } from "./GroupAccordion";
 import { AddGroupCard } from "./AddGroupCard";
@@ -32,9 +32,13 @@ export const GroupsContainer = () => {
         <ActionBar />
         <AddGroupCard />
         <GradeCard />
-        {groups.map((group) => (
-          <GroupsAccordion group={group} key={group} />
-        ))}
+        {groups.length > 0 ? (
+          groups.map((group) => <GroupsAccordion group={group} key={group} />)
+        ) : (
+          <Box textAlign={"center"}>
+            <Typography>Noch keine Noten vorhanden...</Typography>
+          </Box>
+        )}
       </Stack>
     </Container>
   );

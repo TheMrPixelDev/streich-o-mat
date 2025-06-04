@@ -18,7 +18,7 @@ export const GradeCard = () => {
       <CardHeader title="Beste Variante" />
       <CardContent>
         <Grid container>
-          <Grid size={6} alignItems={"center"} display={"flex"} justifyContent={"center"}>
+          <Grid size={{ lg: 6, xs: 12 }} alignItems={"center"} display={"flex"} justifyContent={"center"}>
             <Stack alignItems={"center"}>
               <Typography>Gesamtnote</Typography>
               <Typography variant="h2">
@@ -26,7 +26,7 @@ export const GradeCard = () => {
               </Typography>
             </Stack>
           </Grid>
-          <Grid size={6}>
+          <Grid size={{ lg: 6, xs: 12 }}>
             <Stack alignItems={"center"}>
               <Typography>zu streichende Noten</Typography>
               <List>

@@ -25,7 +25,7 @@ export const AddGroupCard = () => {
       <CardHeader title="Note hinzufügen" />
       <CardContent>
         <Grid container spacing={2}>
-          <Grid size={6}>
+          <Grid size={{ lg: 6, xs: 12 }}>
             <TextField
               fullWidth
               variant="filled"
@@ -35,7 +35,7 @@ export const AddGroupCard = () => {
               onChange={(event) => setSubject({ ...subject, name: event.target.value })}
             />
           </Grid>
-          <Grid size={6}>
+          <Grid size={{ lg: 6, xs: 12 }}>
             <TextField
               fullWidth
               variant="filled"
@@ -45,7 +45,7 @@ export const AddGroupCard = () => {
               onChange={(event) => setSubject({ ...subject, ects: Number.parseInt(event.target.value) })}
             />
           </Grid>
-          <Grid size={6}>
+          <Grid size={{ lg: 6, xs: 12 }}>
             <TextField
               fullWidth
               variant="filled"
@@ -55,7 +55,7 @@ export const AddGroupCard = () => {
               onChange={(event) => setSubject({ ...subject, grade: Number.parseFloat(event.target.value) })}
             />
           </Grid>
-          <Grid size={6}>
+          <Grid size={{ lg: 6, xs: 12 }}>
             <Autocomplete
               options={groups}
               value={subject.group}
