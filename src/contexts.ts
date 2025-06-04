@@ -5,3 +5,10 @@ export const SubjectContext = createContext<{ subjects: Subject[]; setSubjects: 
   subjects: [],
   setSubjects: () => void 0,
 });
+
+export type Theme = "LIGHT" | "DARK";
+
+export const ThemeContext = createContext<{ theme: Theme; setTheme: (theme: Theme) => void }>({
+  setTheme: () => void 0,
+  theme: "LIGHT",
+});

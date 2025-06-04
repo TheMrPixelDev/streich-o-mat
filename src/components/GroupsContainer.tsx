@@ -1,4 +1,4 @@
-import { Container, Stack, Typography } from "@mui/material";
+import { Container, IconButton, Stack, Typography } from "@mui/material";
 import { useGroups } from "../hooks/useGroups";
 import { GroupsAccordion } from "./GroupAccordion";
 import { useSubjects } from "../hooks/useSubjects";
@@ -7,10 +7,14 @@ import { GradeCard } from "./GradeCard";
 import { useEffect } from "react";
 import { mockdata } from "../utils/mockdata";
 import { ActionBar } from "./ActionBar";
+import LightIcon from "@mui/icons-material/LightMode";
+import DarkIcon from "@mui/icons-material/DarkMode";
+import { useMyTheme } from "../hooks/useMyTheme";
 
 export const GroupsContainer = () => {
   const { setSubjects } = useSubjects();
   const groups = useGroups();
+  const { setTheme, theme } = useMyTheme();
 
   useEffect(() => {
     setSubjects(mockdata);
@@ -18,8 +22,21 @@ export const GroupsContainer = () => {
 
   return (
     <Container>
-      <Stack direction={"column"} spacing={3}>
-        <Typography variant="h3">Streich-O-Mat</Typography>
+      <Stack direction={"column"} spacing={3} marginTop={3}>
+        <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
+          <Typography variant="h3">Streich-O-Mat</Typography>
+          <IconButton
+            onClick={() => {
+              if (theme === "DARK") {
+                setTheme("LIGHT");
+              } else {
+                setTheme("DARK");
+              }
+            }}
+          >
+            {theme === "DARK" ? <LightIcon /> : <DarkIcon />}
+          </IconButton>
+        </Stack>
         <ActionBar />
         <AddGroupCard />
         <GradeCard />
