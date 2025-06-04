@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, Divider, Grid, List, ListItem, Stack, Typography } from "@mui/material";
 import { useGradesOfCombinations } from "../hooks/useGradesOfCombinations";
+import React from "react";
 
 export const GradeCard = () => {
   const combinations = useGradesOfCombinations() ?? [];
@@ -31,12 +32,12 @@ export const GradeCard = () => {
               <List>
                 {bestCombination !== undefined && bestCombination.combination.length > 0 ? (
                   bestCombination.combination.map((subject) => (
-                    <>
+                    <React.Fragment key={subject.name}>
                       <ListItem>
                         <Typography>{subject.name}</Typography>
                       </ListItem>
                       <Divider />
-                    </>
+                    </React.Fragment>
                   ))
                 ) : (
                   <Typography variant="h2">-</Typography>

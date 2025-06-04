@@ -6,6 +6,7 @@ import { AddGroupCard } from "./AddGroupCard";
 import { GradeCard } from "./GradeCard";
 import { useEffect } from "react";
 import { mockdata } from "../utils/mockdata";
+import { ActionBar } from "./ActionBar";
 
 export const GroupsContainer = () => {
   const { setSubjects } = useSubjects();
@@ -19,6 +20,7 @@ export const GroupsContainer = () => {
     <Container>
       <Stack direction={"column"} spacing={3}>
         <Typography variant="h3">Streich-O-Mat</Typography>
+        <ActionBar />
         <AddGroupCard />
         <GradeCard />
         {groups.map((group) => (

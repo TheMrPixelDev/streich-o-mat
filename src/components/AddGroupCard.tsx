@@ -69,8 +69,7 @@ export const AddGroupCard = () => {
             />
           </Grid>
           <Grid size={12}>
-            <Button fullWidth variant="contained" onClick={handleAddSubject}>
-              <AddIcon />
+            <Button fullWidth variant="contained" onClick={handleAddSubject} startIcon={<AddIcon />}>
               hinzufügen
             </Button>
           </Grid>
