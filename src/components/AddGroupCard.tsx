@@ -59,6 +59,7 @@ export const AddGroupCard = () => {
             <Autocomplete
               options={groups}
               value={subject.group}
+              onChange={(_, newValue) => setSubject({ ...subject, group: newValue ?? "" })}
               freeSolo
               renderInput={(params) => (
                 <TextField
