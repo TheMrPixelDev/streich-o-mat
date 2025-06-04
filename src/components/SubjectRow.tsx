@@ -13,10 +13,10 @@ export const SubjectRow = (props: { subject: Subject }) => {
 
   return (
     <TableRow>
-      <TableCell>{subject.name}</TableCell>
-      <TableCell>{subject.ects}</TableCell>
-      <TableCell>{subject.grade}</TableCell>
-      <TableCell>
+      <TableCell width={"60%"}>{subject.name}</TableCell>
+      <TableCell width={"10%"}>{subject.ects}</TableCell>
+      <TableCell width={"10%"}>{subject.grade}</TableCell>
+      <TableCell width={"10%"}>
         <Tooltip title="Löschen">
           <IconButton onClick={handleDelete}>
             <DeleteIcon />

@@ -1,6 +1,7 @@
-import { Accordion, AccordionDetails, AccordionSummary, Table, TableBody } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Table, TableBody, Typography } from "@mui/material";
 import { useSubjectsInGroup } from "../hooks/useSubjectsInGroups";
 import { SubjectRow } from "./SubjectRow";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export const GroupsAccordion = (props: { group: string }) => {
   const { group } = props;
@@ -8,7 +9,9 @@ export const GroupsAccordion = (props: { group: string }) => {
 
   return (
     <Accordion>
-      <AccordionSummary>{group}</AccordionSummary>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <Typography fontWeight={"bold"}>{group}</Typography>
+      </AccordionSummary>
       <AccordionDetails>
         <Table>
           <TableBody>
