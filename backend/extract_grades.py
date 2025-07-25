@@ -1,7 +1,6 @@
 from pypdf import PdfReader, PageObject
 from typing import BinaryIO
 
-
 def _parse_grades_for_page(page: PageObject):
     table = list(
         filter(
@@ -17,26 +16,37 @@ def _parse_grades_for_page(page: PageObject):
             )
         )
     
-    grade_rows = list(filter(lambda row: len(row) > 2 and row[-2].strip() == "BE", table))
-    parsed_grades = []
+    current_group = None
+    subjects = []
+    for row in table:
+        if len(row) > 2:
+            if "Modulgruppe" in row[1]: # We are in a row that describes a whole group
+                current_group = row[1]
+                continue
+            elif row[-2].strip() == "BE": # We are in a row that describes a subject
+                grade_element = next((x for x in row if "," in x), None)
 
-    for grade_row in grade_rows:
-        grade_element = next((x for x in grade_row if "," in x), None)
+                if grade_element is None:
+                    continue
 
-        if grade_element is None:
-            continue
-
-        parsed_grades.append({
-            "module": grade_row[1],
-            "module_id": grade_row[0],
-            "semester": grade_row[2],
-            "grade": float(grade_element.replace(",", ".")),
-            "ects": int(grade_row[grade_row.index(grade_element) + 1])
-        })
-    return parsed_grades
+                subjects.append({
+                    "group": current_group,
+                    "module": row[1],
+                    "module_id": row[0],
+                    "semester": row[2],
+                    "grade": float(grade_element.replace(",", ".")),
+                    "ects": int(row[row.index(grade_element) + 1])
+                })
+    return subjects
+    
 
 def extract_grades_from_pdf(pdf: BinaryIO):
     grades = []
     for page in PdfReader(pdf).pages:
         grades = grades + _parse_grades_for_page(page)
     return grades
+
+with open("example.pdf", "rb") as file:
+    for row in extract_grades_from_pdf(file):
+        print(row)
+        
