@@ -31,7 +31,7 @@ def _parse_grades_for_page(page: PageObject):
 
                 subjects.append({
                     "group": current_group,
-                    "module": row[1],
+                    "name": row[1],
                     "module_id": row[0],
                     "semester": row[2],
                     "grade": float(grade_element.replace(",", ".")),

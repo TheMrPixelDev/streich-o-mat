@@ -5,11 +5,12 @@ from extract_grades import extract_grades_from_pdf
 app = FastAPI()
 
 origins = [
-    "http://localhost:8000"
-    "http://streich-o-mat.pxldeveloper.eu"
+    "http://localhost:8080",
+    "localhost:8080",
+    "https://streich-o-mat.pxldeveloper.eu"
 ]
 
-app.add_middleware(CORSMiddleware,allow_origins=origins, allow_methods=["*"], allow_headers=["*"], allow_credentials=True)
+app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=["*"], allow_headers=["*"])
 
 @app.post("/parse_pdf")
 async def upload_pdf(file: UploadFile = File()):
