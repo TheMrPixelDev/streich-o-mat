@@ -45,8 +45,3 @@ def extract_grades_from_pdf(pdf: BinaryIO):
     for page in PdfReader(pdf).pages:
         grades = grades + _parse_grades_for_page(page)
     return grades
-
-with open("example.pdf", "rb") as file:
-    for row in extract_grades_from_pdf(file):
-        print(row)
-        
